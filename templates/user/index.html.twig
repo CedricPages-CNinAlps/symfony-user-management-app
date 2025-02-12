@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello UserController!{% endblock %}
+
+{% block body %}
+        <h1>Liste des utilisateurs</h1>
+        <table>
+            <tr>
+                <th>Nom</th>
+                <th>Prénom</th>
+                <th>Email</th>
+                <th>Groupe</th>
+                <th>Créé le</th>
+                <th>Dernière connexion</th>
+                <th>Actions</th>
+            </tr>
+            {% for user in users %}
+                <tr>
+                    <td>{{ user.lastname }}</td>
+                    <td>{{ user.firstname }}</td>
+                    <td>{{ user.email }}</td>
+                    <td>{{ user.groupe }}</td>
+                    <td>{{ user.createdAt|date('Y-m-d H:i') }}</td>
+                    <td>{{ user.lastLogin ? user.lastLogin|date('Y-m-d H:i') : 'Jamais' }}</td>
+                    <td>
+                        <a href="{{ path('api_update_user', {'id': user.id}) }}">Modifier</a>
+                        <a href="{{ path('api_delete_user', {'id': user.id}) }}" onclick="return confirm('Supprimer ?')">Supprimer</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+        <a href="{{ path('api_create_user') }}">Ajouter un utilisateur</a>
+{% endblock %}

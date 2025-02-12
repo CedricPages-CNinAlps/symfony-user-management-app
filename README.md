@@ -122,3 +122,11 @@ Et la nous aurons comme retour le message suivant : ```{"message":"Utilisateur s
 
 # <span style="color:darkblue">4. Interface Web</span>
 <sub>*Git branche "interface-web"*</sub>
+Pour l'interface Web je vais venir utiliser un contrôleur différent pour le rendu et une URL /users...
+```php bin/console make:controller UserController```
+Cela me crée les fichiers suivants :
+- src/Controller/UserController.php 
+- templates/user/index.html.twig
+- tests/Controller/UserControllerTest.php
+
+Comme précédement, je viens implémenter mon fichier UserController.php avec mes méthodes.
