@@ -122,3 +122,21 @@ Et la nous aurons comme retour le message suivant : ```{"message":"Utilisateur s
 
 # <span style="color:darkblue">4. Interface Web</span>
 <sub>*Git branche "interface-web"*</sub>
+Pour l'interface Web je vais venir utiliser un contrôleur différent pour le rendu et une URL /users...
+```php bin/console make:controller UserController```
+Cela me crée les fichiers suivants :
+- src/Controller/UserController.php 
+- templates/user/index.html.twig
+- tests/Controller/UserControllerTest.php
+
+Comme précédement, je viens implémenter mon fichier UserController.php avec mes méthodes.
+
+## 4.1 Création d'un formulaire
+Pour ce faire, je vais utiliser la commande : ```php bin/console make:form UserType User```
+Cela me crée mon fichier "src/Form/UserType.php" dans lequel je vais implémenter mes méthodes au besoin.
+
+## 4.2 Création d'un template twig
+Pour ce faire, je vais créer un fichier dans templates/user/edit.html.twig qui me permettra d'appeler mon FORM automatiquement.
+
+## 4.3 Mise en place d'un design Bootstrap
+Dans le fichier templates/base.html.twig, on retrouvera les scripts Bootstrap pour un gain de temps.
