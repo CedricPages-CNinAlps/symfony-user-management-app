@@ -10,7 +10,8 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\ORM\EntityManagerInterface;
-
+use Symfony\Component\Security\Csrf\CsrfTokenManagerInterface;
+use Symfony\Component\Security\Csrf\CsrfToken;
 
 final class ApiUserController extends AbstractController
 {
@@ -66,12 +67,19 @@ final class ApiUserController extends AbstractController
         return $this->json($user);
     }
 
-    #[Route('/api/users/{id}', name: 'api_delete_user', methods: ['DELETE'])]
-    public function deleteUser(User $user, EntityManagerInterface $em): JsonResponse
+//    #[Route('/api/users/{id}', name: 'api_delete_user', methods: ['DELETE'])]
+    #[Route('/api/users/{id}', name: 'api_delete_user', methods: ['POST'])]
+    public function deleteUser(Request $request,User $user, EntityManagerInterface $em, CsrfTokenManagerInterface $csrfTokenManager): JsonResponse
     {
+        $token = new CsrfToken('delete' . $user->getId(), $request->request->get('_token'));
+        if (!$csrfTokenManager->isTokenValid($token)) {
+            return $this->json(['message' => 'Token CSRF invalide'], Response::HTTP_FORBIDDEN);
+        }
+
         $em->remove($user);
         $em->flush();
 
         return $this->json(['message' => 'Utilisateur supprimé'], Response::HTTP_OK);
     }
+
 }

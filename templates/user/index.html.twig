@@ -4,16 +4,23 @@
 
 {% block body %}
         <h1>Liste des utilisateurs</h1>
-        <table>
-            <tr>
+
+    <a href="{{ path('user_create') }}" class="btn btn-primary btn-sm mx-2"
+       style="margin-bottom: 20px;margin-top: 20px;">Ajouter un utilisateur</a>
+
+        <table class="table table-striped">
+            <thead>
+            <tr class="text-center">
                 <th>Nom</th>
                 <th>Prénom</th>
                 <th>Email</th>
                 <th>Groupe</th>
                 <th>Créé le</th>
                 <th>Dernière connexion</th>
-                <th>Actions</th>
+                <th colspan="2">Actions</th>
             </tr>
+            </thead>
+            <tbody>
             {% for user in users %}
                 <tr>
                     <td>{{ user.lastname }}</td>
@@ -23,11 +30,18 @@
                     <td>{{ user.createdAt|date('Y-m-d H:i') }}</td>
                     <td>{{ user.lastLogin ? user.lastLogin|date('Y-m-d H:i') : 'Jamais' }}</td>
                     <td>
-                        <a href="{{ path('api_update_user', {'id': user.id}) }}">Modifier</a>
-                        <a href="{{ path('api_delete_user', {'id': user.id}) }}" onclick="return confirm('Supprimer ?')">Supprimer</a>
+                        <a href="{{ path('users_edit', {'id': user.id}) }}" class="btn btn-warning btn-sm">Modifier</a>
+                    </td>
+                    <td>
+                        <form action="{{ path('api_delete_user', {'id': user.id}) }}" method="post" onsubmit="return confirm('Supprimer ?')">
+                            <input type="hidden" name="_method" value="DELETE">
+                            <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ user.id) }}">
+                            <button type="submit" class="btn btn-danger btn-sm">Supprimer</button>
+                        </form>
                     </td>
                 </tr>
             {% endfor %}
+            </tbody>
         </table>
-        <a href="{{ path('api_create_user') }}">Ajouter un utilisateur</a>
+
 {% endblock %}

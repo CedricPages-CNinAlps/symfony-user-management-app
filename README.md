@@ -130,3 +130,12 @@ Cela me crée les fichiers suivants :
 - tests/Controller/UserControllerTest.php
 
 Comme précédement, je viens implémenter mon fichier UserController.php avec mes méthodes.
+
+## 4.1 Création d'un formulaire
+Pour ce faire, je vais utiliser la commande : ```php bin/console make:form UserType User```
+Cela me crée mon fichier "src/Form/UserType.php" dans lequel je vais implémenter mes méthodes au besoin.
+
+## 4.2 Création d'un template twig
+Pour ce faire, je vais créer un fichier dans templates/user/edit.html.twig qui me permettra d'appeler mon FORM automatiquement.
+
+##

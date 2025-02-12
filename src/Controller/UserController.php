@@ -9,16 +9,11 @@ use App\Repository\UserRepository;
 use App\Entity\User;
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\ORM\EntityManagerInterface;
+use App\Form\UserType;
 
 final class UserController extends AbstractController
 {
-//    #[Route('/user', name: 'app_user')]
-//    public function index(): Response
-//    {
-//        return $this->render('user/index.html.twig', [
-//            'controller_name' => 'UserController',
-//        ]);
-//    }
+
     #[Route('/users', name: 'users_list')]
     public function listUsers(UserRepository $userRepository): Response
     {
@@ -41,6 +36,27 @@ final class UserController extends AbstractController
         }
 
         return $this->render('user/edit.html.twig', [
+            'form' => $form->createView(),
+        ]);
+    }
+
+    #[Route('/users/new', name: 'user_create')]
+    public function createUser(Request $request, EntityManagerInterface $entityManager): Response
+    {
+        $user = new User(); // Nouvel utilisateur
+        $form = $this->createForm(UserType::class, $user); // Réutilisation du même formulaire
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $user->setCreatedAt(new \DateTime()); // Définir la date de création
+            $entityManager->persist($user);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('users_list'); // Redirection après création
+        }
+
+        return $this->render('user/new.html.twig', [
             'form' => $form->createView(),
         ]);
     }
