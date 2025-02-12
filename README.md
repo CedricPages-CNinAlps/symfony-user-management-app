@@ -59,3 +59,11 @@ Cela va nous créer le fichier migrations/Version20250212110816.php
 
 # <span style="color:darkblue">3. Création du contrôleur API REST et des routes</span>
 <sub>*Git branche "creation-api-controller-routes"*</sub>
+
+## 3.1 Création et implémentation du contrôleur
+Pour créer notre contrôleur UserController, nous utiliserons la commande :
+```php bin/console make:controller ApiUserController```
+Cela nous permet de créer les fichiers du contrôleur ainsi que les fichiers de tests pour PHPUnit :
+- src/Controller/ApiUserController.php
+- templates/api_user/index.html.twig
+- tests/Controller/ApiUserControllerTest.php
