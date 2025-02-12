@@ -138,4 +138,5 @@ Cela me crée mon fichier "src/Form/UserType.php" dans lequel je vais implément
 ## 4.2 Création d'un template twig
 Pour ce faire, je vais créer un fichier dans templates/user/edit.html.twig qui me permettra d'appeler mon FORM automatiquement.
 
-##
+## 4.3 Mise en place d'un design Bootstrap
+Dans le fichier templates/base.html.twig, on retrouvera les scripts Bootstrap pour un gain de temps.
