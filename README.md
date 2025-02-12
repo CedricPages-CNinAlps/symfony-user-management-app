@@ -7,5 +7,13 @@
 $ composer create-project symfony/skeleton symfony-user-management-app
 $ cd symfony-user-management-app
 ```
-## 1.2 Configuration de la base de données (SQLite)
-<sub>*Git création de la branche "initialisation-data-base-SQLite" via la commande ```git checkout -d initialisation-data-base-SQLite```*</sub>
+## 1.2 Installation de la webapp
+<sub>*Git création de la branche "initialisation-data-base-SQLite" via la commande ```git checkout -b initialisation-data-base-SQLite```*</sub>
+```
+$ composer require webapp
+```
+Une fois l'installation réalisée notre .env a évolué avec le reste des dossiers.
+
+## 1.3 Configuration de la base de données (SQLite)
+
+
