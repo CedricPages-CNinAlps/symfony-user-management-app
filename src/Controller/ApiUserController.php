@@ -67,13 +67,14 @@ final class ApiUserController extends AbstractController
         return $this->json($user);
     }
 
-//    #[Route('/api/users/{id}', name: 'api_delete_user', methods: ['DELETE'])]
-    #[Route('/api/users/{id}', name: 'api_delete_user', methods: ['POST'])]
+    #[Route('/api/users/{id}', name: 'api_delete_user', methods: ['POST','DELETE'])]
     public function deleteUser(Request $request,User $user, EntityManagerInterface $em, CsrfTokenManagerInterface $csrfTokenManager): JsonResponse
     {
-        $token = new CsrfToken('delete' . $user->getId(), $request->request->get('_token'));
-        if (!$csrfTokenManager->isTokenValid($token)) {
-            return $this->json(['message' => 'Token CSRF invalide'], Response::HTTP_FORBIDDEN);
+        if ($request->getMethod() !== 'DELETE') {
+            $token = new CsrfToken('delete' . $user->getId(), $request->request->get('_token'));
+            if (!$csrfTokenManager->isTokenValid($token)) {
+                return $this->json(['message' => 'Token CSRF invalide'], Response::HTTP_FORBIDDEN);
+            }
         }
 
         $em->remove($user);
