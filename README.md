@@ -56,3 +56,6 @@ Pour la dernière étape de la création de la class User, on va générer celle
 Cela va nous créer le fichier migrations/Version20250212110816.php
 
 ```php bin/console doctrine:migrations:migrate```
+
+# <span style="color:darkblue">3. Création du contrôleur API REST et des routes</span>
+<sub>*Git branche "creation-api-controller-routes"*</sub>
