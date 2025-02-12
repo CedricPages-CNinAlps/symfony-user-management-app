@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ApiUserController!{% endblock %}
+
+{% block body %}
+{#<style>#}
+{#    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }#}
+{#    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }#}
+{#</style>#}
+
+{#<div class="example-wrapper">#}
+{#    <h1>Hello {{ controller_name }}! ✅</h1>#}
+
+{#    This friendly message is coming from:#}
+{#    <ul>#}
+{#        <li>Your controller at <code>C:/Users/Arthemis/Desktop/symfony-user-management-app/src/Controller/ApiUserController.php</code></li>#}
+{#        <li>Your template at <code>C:/Users/Arthemis/Desktop/symfony-user-management-app/templates/api_user/index.html.twig</code></li>#}
+{#    </ul>#}
+{#</div>#}
+
+    <h1>Liste des utilisateurs</h1>
+    <table>
+        <tr>
+            <th>Nom</th>
+            <th>Prénom</th>
+            <th>Email</th>
+            <th>Groupe</th>
+            <th>Créé le</th>
+            <th>Dernière connexion</th>
+            <th>Actions</th>
+        </tr>
+        {% for user in users %}
+            <tr>
+                <td>{{ user.lastname }}</td>
+                <td>{{ user.firstname }}</td>
+                <td>{{ user.email }}</td>
+                <td>{{ user.groupe }}</td>
+                <td>{{ user.createdAt|date('Y-m-d H:i') }}</td>
+                <td>{{ user.lastLogin ? user.lastLogin|date('Y-m-d H:i') : 'Jamais' }}</td>
+                <td>
+                    <a href="{{ path('user_edit', {'id': user.id}) }}">Modifier</a>
+                    <a href="{{ path('user_delete', {'id': user.id}) }}" onclick="return confirm('Supprimer ?')">Supprimer</a>
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+    <a href="{{ path('user_new') }}">Ajouter un utilisateur</a>
+{% endblock %}

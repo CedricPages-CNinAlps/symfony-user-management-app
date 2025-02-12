@@ -59,3 +59,64 @@ Cela va nous créer le fichier migrations/Version20250212110816.php
 
 # <span style="color:darkblue">3. Création du contrôleur API REST et des routes</span>
 <sub>*Git branche "creation-api-controller-routes"*</sub>
+
+## 3.1 Création et implémentation du contrôleur
+Pour créer notre contrôleur UserController, nous utiliserons la commande :
+```php bin/console make:controller ApiUserController```
+Cela nous permet de créer les fichiers du contrôleur ainsi que les fichiers de tests pour PHPUnit :
+- src/Controller/ApiUserController.php
+- templates/api_user/index.html.twig
+- tests/Controller/ApiUserControllerTest.php
+
+## 3. Création et implémentation du contrôleur
+Dans mon contrôler ApiUserController.php, je viens créer mes fonctions de routes en utilisant :
+1.	GET /api/users : Récupérer tous les utilisateurs
+2.	POST /api/users : Ajouter un utilisateur
+3.	PUT /api/users/{id} : Modifier un utilisateur existant
+4.	DELETE /api/users/{id} : Supprimer un utilisateur
+
+## 3.3 Test de l'implémentation du contrôleur
+Pour vérifier, que tout fonctionne parfaitement, je vais venir démarrer mon server Symfony via :
+```symfony server:start```
+
+### 3.3.1 Test GET
+Pour la 1ère vérification, nous lançons la commande :
+```curl -X GET http://localhost:8000/api/users```
+Si nous ne trouvons pas de données, nous aurons le message 'Données incomplètes'. A ce point, aucune données est entrée. 
+
+### 3.3.2 Test POST
+Pour créé un utilisateur, nous lançons la commande :
+```
+curl -X POST http://localhost:8000/api/users \
+     -H "Content-Type: application/json" \
+     -d '{
+           "firstname": "John",
+           "lastname": "Doe",
+           "email": "john.doe@example.com",
+           "groupe": "admin"
+         }'
+```
+Si nous faisons de nouveau la commande ```curl -X GET http://localhost:8000/api/users``` cette fois-ci cela nous retournera la donnée suivante en JSON :  
+```
+[{"id":1,"lastname":"Doe","firstname":"John","email":"john.doe@example.com","groupe":"admin","createdAt":"2025-02-12T13:44:04+00:00","updatedAt":null,"lastLogin":null}]
+```
+
+### 3.3.3 Test PUT
+Pour mettre à jour l'utilisateur, nous lançons la commande :
+```
+curl -X PUT http://localhost:8000/api/users/1 \
+     -H "Content-Type: application/json" \
+     -d '{
+           "lastname": "Doe test update",
+         }'
+```
+Si nous faisons de nouveau la commande : ```curl -X GET http://localhost:8000/api/users``` cette fois-ci cela nous retournera la donnée suivante en JSON, le nom aura été actalisé, ainsi que la date de mise à jour :
+```
+[{"id":1,"lastname":"Doe test update","firstname":"John","email":"john.doe@example.com","groupe":"admin","createdAt":"2025-02-12T13:44:04+00:00","updatedAt":2025-02-12T13:52:47+00:00,"lastLogin":null}]
+```
+
+### 3.3.4 Test DELETE
+Pour faire la suppression de l'utilisateur, nous utilisons la commande :
+```curl -X DELETE http://localhost:8000/api/users/1```
+Et la nous aurons comme retour le message suivant : ```{"message":"Utilisateur supprimé"}```
+
