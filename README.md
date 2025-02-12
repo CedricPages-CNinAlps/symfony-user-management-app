@@ -30,3 +30,29 @@ Ce qui génère dans mon dossier "var" le fichier data.db
 
 # <span style="color:darkblue">2. Création de la Class User</span>
 <sub>*Git branche "creation-de-l-entite-user"*</sub>
+
+## 2.1 Génération de la class User
+Je viens créer ma class User, via la ligne de commande :
+```php bin/console make:entity User```
+Ce qui génère dans mon dossier "src" les fichiers suivants :
+- src/Entity/User.php
+- src/Repository/UserRepository.php
+
+## 2.2 Définition des propriétés de la class User.php
+Dans src/Entity/User.php, je viens créer les informations que nous souhaitons utiliser comme :
+- Id ;
+- Prénom ;
+- Nom ;
+- Email ;
+- Groupe ;
+- Date de création ;
+- Date de mise à jour.
+
+## 2.3 Génération et exécution de la migration
+Pour la dernière étape de la création de la class User, on va générer celle-ci dans notre base de données en faisant la migration, via :
+
+```php bin/console make:migration```
+
+Cela va nous créer le fichier migrations/Version20250212110816.php
+
+```php bin/console doctrine:migrations:migrate```
