@@ -68,7 +68,7 @@ Cela nous permet de créer les fichiers du contrôleur ainsi que les fichiers de
 - templates/api_user/index.html.twig
 - tests/Controller/ApiUserControllerTest.php
 
-## 3. Création et implémentation du contrôleur
+## 3.2 Création et implémentation du contrôleur
 Dans mon contrôler ApiUserController.php, je viens créer mes fonctions de routes en utilisant :
 1.	GET /api/users : Récupérer tous les utilisateurs
 2.	POST /api/users : Ajouter un utilisateur
@@ -120,3 +120,5 @@ Pour faire la suppression de l'utilisateur, nous utilisons la commande :
 ```curl -X DELETE http://localhost:8000/api/users/1```
 Et la nous aurons comme retour le message suivant : ```{"message":"Utilisateur supprimé"}```
 
+# <span style="color:darkblue">4. Interface Web</span>
+<sub>*Git branche "interface-web"*</sub>
