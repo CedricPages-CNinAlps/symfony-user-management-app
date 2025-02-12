@@ -140,3 +140,32 @@ Pour ce faire, je vais créer un fichier dans templates/user/edit.html.twig qui 
 
 ## 4.3 Mise en place d'un design Bootstrap
 Dans le fichier templates/base.html.twig, on retrouvera les scripts Bootstrap pour un gain de temps.
+
+# <span style="color:darkblue">4. Visualisation du projet</span>
+1. Activer le server symfony : ```symfony server:start```
+2. Pour visualiser du rendu API, rendez-vous sur http://127.0.0.1:8000/api/users
+3. Pour créer un utilisateur, vous pouvez faire le code suivant : 
+```
+curl -X POST http://localhost:8000/api/users \
+    -H "Content-Type: application/json" \
+    -d '{
+        "firstname": "John",
+        "lastname": "Doe",
+        "email": "john.doe@example.com",
+        "groupe": "admin"
+        }'
+```
+4. Pour modifier un utilisateur, vous pouvez faire le code suivant :
+```
+curl -X PUT http://localhost:8000/api/users/1 \
+     -H "Content-Type: application/json" \
+     -d '{
+           "lastname": "Doe update",
+         }'
+```
+5. Pour supprimer un utilisateur, vous pouvez faire le code suivant :
+   ```curl -X DELETE http://localhost:8000/api/users/1```
+6. Pour le visuel final, rendez-vous sur http://127.0.0.1:8000/users
+Il vous suffira d'utiliser les boutons.
+
+Merci
