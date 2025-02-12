@@ -26,4 +26,7 @@ Ce qui génère dans mon dossier "var" le fichier data.db
 
 <sub>*Ajout des fichiers modifiés via ```git add .env README.md etc...```, création d'un commit commenté ```git commit -m Initialisation de la base de données SQLite avec création de celle-ci"```, suivi d'un push ```git push origin initialisation-data-base-SQLite```, d'une création de PullRequest (sous GitHub ou via PhpStorm directement) de la branche "initialisation-data-base-SQLite" sur "master" puis ont fait le merge (sous GitHub ou via PhpStorm directement) des modifications sur "master" et pour finir sur notre projet, on retourne sur notre branche via ```git checkout master``` et nous faisons un ```git pull``` pour mettre à jour notre branche local.*</sub>
 
+**<span style="color:darkred">*Pour le reste des étapes du projet, je ne détaillerai plus la procédure git, je reprendrai uniquement le nom de la branche de développement pour information.*</span>**
 
+# <span style="color:darkblue">2. Création de la Class User</span>
+<sub>*Git branche "creation-de-l-entite-user"*</sub>
