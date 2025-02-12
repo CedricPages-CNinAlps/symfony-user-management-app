@@ -16,6 +16,7 @@
                 <th>Email</th>
                 <th>Groupe</th>
                 <th>Créé le</th>
+                <th>Mise à jour</th>
                 <th>Dernière connexion</th>
                 <th colspan="2">Actions</th>
             </tr>
@@ -28,6 +29,7 @@
                     <td>{{ user.email }}</td>
                     <td>{{ user.groupe }}</td>
                     <td>{{ user.createdAt|date('Y-m-d H:i') }}</td>
+                    <td>{{ user.updatedAt|date('Y-m-d H:i') }}</td>
                     <td>{{ user.lastLogin ? user.lastLogin|date('Y-m-d H:i') : 'Jamais' }}</td>
                     <td>
                         <a href="{{ path('users_edit', {'id': user.id}) }}" class="btn btn-warning btn-sm">Modifier</a>
